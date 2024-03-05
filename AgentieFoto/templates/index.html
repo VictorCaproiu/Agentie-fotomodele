@@ -1,0 +1,42 @@
+<head>
+    <title>Login</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+    <h1> Login to an existing account </h1>
+
+    <form action="{{url_for('login')}}" method="post">
+        <label>email</label>
+        <input type="text" name="email" id="email" required><br>
+        <label>password</label>
+        <input type="password" name="password" id="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+
+    
+    <h1> Create a new account </h1>
+
+    <form action="{{url_for('register')}}" method="post">
+
+        <label>first name</label>
+        <input type="text" name="prenume" id="prenume" required><br>
+
+        <label>last name</label>
+        <input type="text" name="nume" id="nume" required><br>
+
+        <label>email</label>
+        <input type="text" name="email" id="email" required><br>
+
+        <label>password</label>
+        <input type="password" name="password" id="password" required><br>
+
+        <label>confirm password</label>
+        <input type="password" name="confirm_pass" id="confirm_pass" required><br>
+
+        <input type="submit" value="Register">
+    </form>
+    
+    <p>{{msg}}</p>
+
+    <h2> <a href="{{url_for('info')}}">About us</a></h2>
+</body>

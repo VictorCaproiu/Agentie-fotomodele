@@ -1,0 +1,137 @@
+<head>
+    <title>Info</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style_info.css') }}">
+</head>
+<body>
+    <h1>General information</h1>
+    <div>
+        <h3>Department employee count:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Department</th>
+                    <th>No. of employees</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%- for line in data[0] %}
+                <tr>
+                    <td>{{line[0]}}</td> <td>{{line[1]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>Search models by eye colour:</h3>
+        <form action="{{url_for('info')}}" method="post">
+
+            <label>Colour:</label>
+                <select id="sel_col" name="sel_col">
+                    <option value="caprui">Brown</option>
+                    <option value="verzi">Green</option>
+                    <option value="albastri">Blue</option>
+                </select>
+            <input type="submit" value="Search">
+        </form>
+        {%- for line in data[1] %}
+            <li>{{line[0]}} {{line[1]}}</li>
+        {% endfor %}
+    </div>
+    <div>
+        <h3>Top employees by work hours</h3>
+        <table>
+            {%- for line in data[2] %}
+                <tr><td>{{line[0]}}</td><td>{{line[1]}}</td><td>{{line[2]}} hrs</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        <h3>Current organised events</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Event Title</th>
+                    <th>Client</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%- for line in data[3] %}
+                    <tr><td>{{line[0]}}</td><td>{{line[1]}}</td><td>{{line[2]}}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>Most recent employments</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Department</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%- for line in data[4] %}
+                <tr><td>{{line[0]}} {{line[1]}}</td><td>{{line[2]}}</td><td>{{line[3]}}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div>
+        <h3>Manager contancts</h3>
+        <table>
+            {%- for line in data[5] %}
+                <tr><td>{{line[0]}} {{line[1]}}</td><td>{{line[2]}}</td><td>{{line[3]}}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    <!-- --------------------Complex Queries ------------------------------- -->
+    <div>
+        <h3>Best paid employees by hour</h3>
+        <table>
+            {%- for line in data[6] %}
+                <tr><td>{{line[0]}} {{line[1]}}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        <h3>Models with selected size below average</h3>
+        <form action="{{url_for('info')}}" method="post">
+
+            <label>Colour:</label>
+                <select id="sel_size" name="sel_size">
+                    <option value="Inaltime">Height</option>
+                    <option value="MarimePantofi">Shoe Size</option>
+                    <option value="DiamBust">Chest</option>
+                    <option value="DiamTalie">Waist</option>
+                    <option value="DiamSolduri">Hips</option>
+                </select>
+            <input type="submit" value="Search">
+        </form>
+        <table>
+            {%- for line in data[7] %}
+                <tr><td>{{line[0]}} {{line[1]}}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        <h3>Most common hair colour</h3>
+        <table>
+            {%- for line in data[8] %}
+                <tr><td>{{line[0]}}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        <h3>Total work hours of managers</h3>
+        <table>
+            {%- for line in data[9] %}
+                <tr><td>{{line[0]}} {{line[1]}}</td><td>{{line[2]}}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <h2> <a href="{{url_for('index')}}">Back</a></h2>
+</body>

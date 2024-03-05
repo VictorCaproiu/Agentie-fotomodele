@@ -1,0 +1,71 @@
+<head>
+    <title>Homepage</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style_home.css') }}">
+</head>
+<body>
+
+    <h1>Hello {{session['first_name']}}!</h1>
+    <hr>
+
+    <div>
+
+    <form action="{{url_for('chg_attr')}}" method="post">
+
+        <label>Update an attribute:</label>
+            <select id="attribute" name="attribute">
+            <option value="Prenume">first name</option>
+            <option value="Nume">last name</option>
+            <option value="Telefon">telephone</option>
+        </select>
+        <input type="text" name="new_attr" id="new_attr" required><br>
+
+        <input type="submit" value="Update">
+    </form>
+
+    <form action="{{url_for('chg_pwd')}}" method="post">
+        <label>new password</label>
+        <input type="password" name="new_pass" id="new_pass" required><br>
+
+        <input type="submit" value="Reset password">
+    </form>
+    
+    <p>{{data}}</p>
+
+    <h2> <a href="{{url_for('logout')}}">Logout</a></h2>
+
+    <h2> <a href="{{url_for('delete_acc')}}">Delete account</a></h2>
+
+    </div>
+
+    <div>
+        {% if session['manager'] %}
+            <h2>Manager settings:</h2>
+
+            <h3>Add an event</h3>
+            <form action="{{url_for('chg_even')}}" method="post">
+                <label>Event title</label>
+                <input type="text" name="title" id="title" required><br>
+        
+                <label>Date</label>
+                <input type="text" name="date" id="date" required><br>
+        
+                <label>Location</label>
+                <input type="text" name="location" id="location" required><br>
+        
+                <label>Assigned coordonator ID</label>
+                <input type="text" name="coordonator" id="coordonator"><br>
+        
+                <input type="submit" value="Add">
+            </form>
+
+            <h3>Delete an event</h3>
+            <form action="{{url_for('del_even')}}" method="post">
+                <label>Event title</label>
+                <input type="text" name="title" id="title" required><br>
+                
+                <input type="submit" value="Delete">
+            </form>
+        {% endif %}
+    </div>
+
+</body>
